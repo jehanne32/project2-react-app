@@ -20,7 +20,6 @@ class MovieStars extends Component {
   };
 
   render() {
-    console.log(this.props.movies);
     let allMovies = this.props.movies.map((movie, index) => (
       <p key={index}>{movie.title}</p>
     ));
@@ -30,7 +29,7 @@ class MovieStars extends Component {
         <h2>Movie Stars</h2>
         <form onSubmit={this.submitHandler}>
           <p>Enter a movie star's name and click submit</p>
-          <input type="text" onChange={this.changeHandler} />
+          <input type="text" name="stars" onChange={this.changeHandler} />
           <input type="submit" />
         </form>
 

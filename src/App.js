@@ -13,19 +13,35 @@ class App extends Component {
     this.state = {
       film: null,
       displayMenu: false,
-      movies: []
+      movieTitlesArray: [],
+      movieStarsArray: []
     };
   }
 
-  onSearchSubmit = userentry => {
+  onSearchTitleSubmit = userentry => {
     const movieUrlEndpoint = `https://api.themoviedb.org/3/search/movie?query=${userentry}&language=en-US&page=1&include_adult=false&api_key=0cdde6f089f29d619490eee523df4e10`;
     axios({
       url: movieUrlEndpoint,
       method: "get"
     })
       .then(response => {
-        console.log(response.data);
-        this.setState({ movies: response.data.results });
+        //console.log(response.data);
+        this.setState({ movieTitlesArray: response.data.results });
+      })
+      .catch(() => {
+        console.log("error");
+      });
+  };
+
+  onSearchStarsSubmit = userentry => {
+    const movieUrlEndpoint = `https://api.themoviedb.org/3/search/movie?query=${userentry}&language=en-US&page=1&include_adult=false&api_key=0cdde6f089f29d619490eee523df4e10`;
+    axios({
+      url: movieUrlEndpoint,
+      method: "get"
+    })
+      .then(response => {
+        //console.log(response.data);
+        this.setState({ movieStarsArray: response.data.results });
       })
       .catch(() => {
         console.log("error");
@@ -49,9 +65,9 @@ class App extends Component {
             path="/MovieStars"
             component={() => (
               <MovieStars
-                appSubmitHandler={this.onSearchSubmit}
+                appSubmitHandler={this.onSearchStarsSubmit}
                 MovieStars={MovieStars}
-                movies={this.state.movies}
+                movies={this.state.movieStarsArray}
               />
             )}
           />
@@ -59,9 +75,9 @@ class App extends Component {
             path="/MovieTitle"
             component={() => (
             <MovieTitle
-            appSubmitHandler={this.onSearchSubmit}
+            appSubmitHandler={this.onSearchTitleSubmit}
                MovieTitle={MovieTitle}
-               movies={this.state.movies}
+               movies={this.state.movieTitlesArray}
                 />
             )}
 
