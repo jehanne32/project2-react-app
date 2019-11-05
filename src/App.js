@@ -1,26 +1,83 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import axios from "axios";
+import MovieTitle from "./MovieTitle";
+import MovieStars from "./MovieStars";
+import MovieCrew from "./MovieCrew";
+import CountryOrigin from "./CountryOrigin";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super();
+    this.state = {
+      film: null,
+      displayMenu: false,
+      movies: []
+    };
+  }
+
+  onSearchSubmit = userentry => {
+    const movieUrlEndpoint = `https://api.themoviedb.org/3/search/movie?query=${userentry}&language=en-US&page=1&include_adult=false&api_key=0cdde6f089f29d619490eee523df4e10`;
+    axios({
+      url: movieUrlEndpoint,
+      method: "get"
+    })
+      .then(response => {
+        console.log(response.data);
+        this.setState({ movies: response.data.results });
+      })
+      .catch(() => {
+        console.log("error");
+      });
+  };
+
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <h1>Movie Maven Madness!</h1>
+        </div>
+        <nav>
+          <Link to="/MovieStars">Movie Stars</Link>{" "}
+          <Link to="/MovieTitle">Movie Title</Link>
+          <Link to="/MovieCrew">Movie Crew</Link>
+          <Link to="/CountryOrigin">Country of Origin</Link>
+        </nav>
+        <div>
+          <Route
+            path="/MovieStars"
+            component={() => (
+              <MovieStars
+                appSubmitHandler={this.onSearchSubmit}
+                MovieStars={MovieStars}
+                movies={this.state.movies}
+              />
+            )}
+          />
+          <Route
+            path="/MovieTitle"
+            component={() => (
+            <MovieTitle
+            appSubmitHandler={this.onSearchSubmit}
+               MovieTitle={MovieTitle}
+               movies={this.state.movies}
+                />
+            )}
+
+          />
+          <Route
+            path="/MovieCrew"
+            component={() => <MovieCrew MovieCrew={MovieCrew} />}
+          />
+          <Route
+            path="/CountryOrigin"
+            component={() => <CountryOrigin CountryOrigin={CountryOrigin} />}
+          />
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
