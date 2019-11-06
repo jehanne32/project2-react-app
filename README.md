@@ -1,7 +1,7 @@
 # wireframeNotes 
-![alt text](images/wireframe1.jpg)
-![alt text](images/wireframe2.jpg)
-![alt text](images/wireframe3.jpg)
+![alt text](src/images/wireframe1.jpg)
+![alt text](src/images/wireframe2.jpg)
+![alt text](src/images/wireframe3.jpg)
 
 
 
