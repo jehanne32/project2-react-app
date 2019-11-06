@@ -4,7 +4,6 @@ import axios from "axios";
 import MovieTitle from "./MovieTitle";
 import MovieStars from "./MovieStars";
 import MovieCrew from "./MovieCrew";
-import CountryOrigin from "./CountryOrigin";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends Component {
@@ -25,7 +24,6 @@ class App extends Component {
       method: "get"
     })
       .then(response => {
-        //console.log(response.data);
         this.setState({ movieTitlesArray: response.data.results });
       })
       .catch(() => {
@@ -40,7 +38,7 @@ class App extends Component {
       method: "get"
     })
       .then(response => {
-        //console.log(response.data);
+      
         this.setState({ movieStarsArray: response.data.results });
       })
       .catch(() => {
@@ -51,14 +49,16 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
-          <h1>Movie Maven Madness!</h1>
-        </div>
-        <nav>
-          <Link to="/MovieStars">Movie Stars</Link>{" "}
-          <Link to="/MovieTitle">Movie Title</Link>
+        <div className="App">        
+          <h1 id="movie">Movie</h1>
+          <h1 id="maven">Maven</h1>
+          <h1 id="madness">Madness!</h1>
+          </div>
+        <nav class="nav">        
+          <Link to="/MovieStars">Movie Stars</Link>{" |  "}
+          <Link to="/MovieTitle">Movie Title</Link>{" |  "}
           <Link to="/MovieCrew">Movie Crew</Link>
-          <Link to="/CountryOrigin">Country of Origin</Link>
+          
         </nav>
         <div>
           <Route
@@ -85,10 +85,6 @@ class App extends Component {
           <Route
             path="/MovieCrew"
             component={() => <MovieCrew MovieCrew={MovieCrew} />}
-          />
-          <Route
-            path="/CountryOrigin"
-            component={() => <CountryOrigin CountryOrigin={CountryOrigin} />}
           />
         </div>
       </Router>

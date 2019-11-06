@@ -11,7 +11,6 @@ class MovieStars extends Component {
 
   submitHandler = event => {
     event.preventDefault();
-
     this.props.appSubmitHandler(this.state.userentry);
   };
 
@@ -27,11 +26,11 @@ class MovieStars extends Component {
     return (
       <div>
         <h2>Movie Stars</h2>
-        <form onSubmit={this.submitHandler}>
-          <p>Enter a movie star's name and click submit</p>
+       <center><form className="divForm" onSubmit={this.submitHandler}>
+          <p class="para">Enter a movie star's name and click submit to see which movies they've starred in.</p>
           <input type="text" name="stars" onChange={this.changeHandler} />
           <input type="submit" />
-        </form>
+        </form></center>
 
         <div>{allMovies}</div>
         <div>
