@@ -27,7 +27,7 @@ class MovieStars extends Component {
       <div>
         <h2>Movie Stars</h2>
        <center><form className="divForm" onSubmit={this.submitHandler}>
-          <p class="para">Enter a movie star's name and click submit to see which movies they've starred in.</p>
+          <p className="para">Enter a movie star's name and click submit to see which movies they've starred in.</p>
           <input className="formInput" type="text" name="stars" onChange={this.changeHandler} />
           <input className="formButton" type="submit" />
         </form></center>

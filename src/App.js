@@ -14,7 +14,7 @@ class App extends Component {
       displayMenu: false,
       movieTitlesArray: [],
       movieStarsArray: [],
-      movieCredits: {}
+      movieCreditsArray: []
     };
   }
 
@@ -38,7 +38,7 @@ class App extends Component {
         })
         .then(response => {
           this.setState({
-            movieCredits: response.data
+            movieCreditsArray: response.data
           })
           console.log(response.data)
         })
@@ -70,7 +70,7 @@ class App extends Component {
           <h1 id="maven">Maven</h1>
           <h1 id="madness">Madness!</h1>
           </div>
-        <nav class="nav">        
+        <nav className="nav">        
           <Link to="/MovieStars">Movie Stars</Link>{" |  "}
           <Link to="/MovieTitle">Movie Title</Link>{" |  "}
           <Link to="/MovieCrew">Movie Crew</Link>
@@ -91,7 +91,7 @@ class App extends Component {
             path="/MovieTitle"
             component={() => (
             <MovieTitle
-            appSubmitHandler={this.onSearchTitleSubmit}
+              appSubmitHandler={this.onSearchTitleSubmit}
                MovieTitle={MovieTitle}
                movies={this.state.movieTitlesArray}
                 />
@@ -100,9 +100,10 @@ class App extends Component {
           />
           <Route
             path="/MovieCrew"
-            component={() => <MovieCrew MovieCrew={this.state.movieCredits.crew}
-              MovieCrew={MovieCrew}
-              movies={this.state.movieCrew} 
+            component={() => 
+            <MovieCrew 
+              movieCreditsArray={this.state.movieCreditsArray.crew} 
+              appSubmitHandler={this.onSearchTitleSubmit}
               />
             }
           />

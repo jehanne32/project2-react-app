@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import Crew from './Crew'
 
 class MovieCrew extends Component {
   constructor(props) {
     super();
     this.state = {
       movieTitle: [],
-      userentry: []
+      userentry: ''
     };
   }
 
@@ -18,26 +19,28 @@ class MovieCrew extends Component {
     this.setState({ userentry: event.target.value });
   };
 
-  render() {
-    let tenCrewMembersArray = this.props.MovieCrew.slice(0, 10)
-    console.log(tenCrewMembersArray)
+  render() {    
+    let tenCrewMembersArray = this.props.movieCreditsArray 
+      ? this.props.movieCreditsArray.slice(0, 10)
+      : []
 
-    const i = tenCrewMembersArray;
-    for (i = 0; i < tenCrewMembersArray.length; i++) {
-       document.getElementById([0]).innerHTML = tenCrewMembersArray;
-    }
+    const crewComponentsArray = tenCrewMembersArray.map((crew, index) =>{
+      return <Crew key={index} crew={crew}/>
+     })
 
     return (
       <div>
         <h2>Movie Crew</h2>
-        <center><form onSubmit={this.submitHandler}>
-          <p class="para">Enter a movie title and click submit to get the complete crew.</p>
-          <input className="formInput"type="text" onChange={this.changeHandler} />
-          <input className="formButton"type="submit" />
-        </form></center>
+        <center>
+        <p className="para">Enter a movie title and click submit to get the complete crew.</p>
+          <form onSubmit={this.submitHandler}>          
+            <input className="formInput"type="text" onChange={this.changeHandler} />
+            <input className="formButton"type="submit" />
+          </form>
+        </center>
 
         <div>
-          {/* <p>{this.props.movieCrew}</p> */}
+          {crewComponentsArray}
         </div>
       </div>
     );

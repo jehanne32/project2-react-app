@@ -39,18 +39,18 @@ class MovieTitle extends Component {
         
         <h2>Movie Title</h2>
         <center><form className="divForm" onSubmit={this.submitHandler}>
-          <p class="para">Enter a movie title and click search</p>
+          <p className="para">Enter a movie title and click search</p>
           <input className="formInput"type="text" name="title" onChange={this.changeHandler} />
           <input className="formButton"type="submit" />
         </form></center>
 
         <div>
-          <p class="title">{title}</p>
-          <p class="title">{release_date}</p>
-          <p class="title">{overview}</p>
+          <p className="title">{title}</p>
+          <p className="title">{release_date}</p>
+          <p className="title">{overview}</p>
           <div id="pictures">
-          <img class="backdrop" src={backdrop_path} />
-          <img class="poster" src={poster_path} />
+          <img className="backdrop" src={backdrop_path} alt={""} />
+          <img className="poster" src={poster_path} alt={""} />
           </div>
         </div>
       </div>
