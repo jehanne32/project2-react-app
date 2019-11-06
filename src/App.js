@@ -13,7 +13,8 @@ class App extends Component {
       film: null,
       displayMenu: false,
       movieTitlesArray: [],
-      movieStarsArray: []
+      movieStarsArray: [],
+      movieCredits: {}
     };
   }
 
@@ -24,8 +25,23 @@ class App extends Component {
       method: "get"
     })
       .then(response => {
+        console.log(response.data.results)
         this.setState({ movieTitlesArray: response.data.results });
+        return response.data.results[0].id
       })
+      .then(movieId => {
+        //MAKE API CALL TO CREDITS ENDPOINT
+          return axios({
+            method: 'GET',
+            url: `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=0cdde6f089f29d619490eee523df4e10`
+          })
+        })
+        .then(response => {
+          this.setState({
+            movieCredits: response.data
+          })
+          console.log(response.data)
+        })
       .catch(() => {
         console.log("error");
       });
@@ -84,7 +100,11 @@ class App extends Component {
           />
           <Route
             path="/MovieCrew"
-            component={() => <MovieCrew MovieCrew={MovieCrew} />}
+            component={() => <MovieCrew MovieCrew={this.state.movieCredits.crew}
+              MovieCrew={MovieCrew}
+              movies={this.state.movieCrew} 
+              />
+            }
           />
         </div>
       </Router>

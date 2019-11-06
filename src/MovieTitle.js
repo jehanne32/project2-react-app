@@ -40,8 +40,8 @@ class MovieTitle extends Component {
         <h2>Movie Title</h2>
         <center><form className="divForm" onSubmit={this.submitHandler}>
           <p class="para">Enter a movie title and click search</p>
-          <input type="text" name="title" onChange={this.changeHandler} />
-          <input type="submit" />
+          <input className="formInput"type="text" name="title" onChange={this.changeHandler} />
+          <input className="formButton"type="submit" />
         </form></center>
 
         <div>

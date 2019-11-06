@@ -1,3 +1,10 @@
+# wireframeNotes 
+![alt text](images/wireframe1.jpg)
+![alt text](images/wireframe2.jpg)
+![alt text](images/wireframe3.jpg)
+
+
+
 Project 2 - React App - TMDB Movie App
 
 Technologies used: HTML5, CSS3, JavaScript, React and React Router

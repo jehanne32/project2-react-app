@@ -19,17 +19,25 @@ class MovieCrew extends Component {
   };
 
   render() {
+    let tenCrewMembersArray = this.props.MovieCrew.slice(0, 10)
+    console.log(tenCrewMembersArray)
+
+    const i = tenCrewMembersArray;
+    for (i = 0; i < tenCrewMembersArray.length; i++) {
+       document.getElementById([0]).innerHTML = tenCrewMembersArray;
+    }
+
     return (
       <div>
         <h2>Movie Crew</h2>
         <center><form onSubmit={this.submitHandler}>
           <p class="para">Enter a movie title and click submit to get the complete crew.</p>
-          <input type="text" onChange={this.changeHandler} />
-          <input type="submit" />
+          <input className="formInput"type="text" onChange={this.changeHandler} />
+          <input className="formButton"type="submit" />
         </form></center>
 
         <div>
-          <p>{this.state.movieCrew}</p>
+          {/* <p>{this.props.movieCrew}</p> */}
         </div>
       </div>
     );
