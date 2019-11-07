@@ -19,6 +19,7 @@ class MovieStars extends Component {
   };
 
   render() {
+    let title;
     let allMovies = this.props.movies.map((movie, index) => (
       <p key={index}>{movie.title}</p>
     ));
@@ -35,6 +36,7 @@ class MovieStars extends Component {
         <div>{allMovies}</div>
         <div>
           <p>{this.state.movieStars}</p>
+          <p className="title">{title}</p>
         </div>
       </div>
     );
