@@ -33,7 +33,7 @@ class MovieCrew extends Component {
         <h2>Movie Crew</h2>
         <center>
         <p className="para">Enter a movie title and click submit to get the complete crew.</p>
-          <form onSubmit={this.submitHandler}>          
+          <form className="divForm" onSubmit={this.submitHandler}>          
             <input className="formInput"type="text" onChange={this.changeHandler} />
             <input className="formButton"type="submit" />
           </form>
@@ -41,6 +41,7 @@ class MovieCrew extends Component {
 
         <div>
           {crewComponentsArray}
+          
         </div>
       </div>
     );
