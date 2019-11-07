@@ -20,6 +20,7 @@ class MovieCrew extends Component {
   };
 
   render() {    
+    let result;
     let tenCrewMembersArray = this.props.movieCreditsArray 
       ? this.props.movieCreditsArray.slice(0, 10)
       : []
@@ -41,6 +42,7 @@ class MovieCrew extends Component {
 
         <div>
           {crewComponentsArray}
+          <p className="title">{result}</p> 
           
         </div>
       </div>
